@@ -61,17 +61,6 @@ if ($_POST) {
             </div>
     <?PHP
 
-            //$queryResult = "SELECT EmailUtente FROM utenti WHERE EmailUtente = '$emailutente'";
-            //echo $query; die(); //DEBUG SQL
-            //$register = mysqli_query($dbh, $query) or die("Register Error");
-            //$result = mysqli_query($dbh, $queryResult) or die("Query Error");
-            //$row = mysqli_fetch_assoc($result);
-            //print_r($row);
-            //if (mysqli_num_rows($result) == 1) {
-            //session_start(); //inizializzo la sessione
-            //$_SESSION['isLoggedIn'] = 1;
-            //$_SESSION['user'] = $row;
-
         }
     } else {
         //Dati non validi
@@ -86,7 +75,7 @@ if ($_POST) {
 } //se i dati sono stati postati
 
 ?>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?id=6">
+<form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>?id=6">
     <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" placeholder="Inserisci il tuo Nome">
@@ -114,5 +103,5 @@ if ($_POST) {
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <div class="form-group">
-    <span>Sei già registrato? <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id=5">Login</a></span>
+    <span>Hai già un account? <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id=5">Login</a></span>
 </div>

@@ -31,19 +31,37 @@ if($_POST){
       include "conn.inc.php"; // restituisce variabile database connessione
       $EmailUtente = $_POST['email'];
       $Password = $_POST['password'];
+      //rimpiazzare il carattere apostrofo e codificare i caratteri <, >
+      //addSlashes php
       //esecuzione query
       $query = "Select * from utenti where EmailUtente = '$EmailUtente'
                 AND PSWd = sha1('$Password')
                 AND disabilitato = 0";
       // echo $query; die(); DEBUG SQL
-      $result = mysqli_query($dbh, $query) or die("Query Error");
+      $result = mysqli_query($dbh, $query) or die("Query Error"); //Restituisce un oggetto
       $row = mysqli_fetch_assoc($result);
       //print_r($row);
-      if(mysqli_num_rows($result) == 1){
+      if(mysqli_num_rows($result) == 1){ //importantissimo perché deve essere strettamente uguale a 1
         session_start(); //inizializzo la sessione
         $_SESSION['isLoggedIn'] = 1;
-        $_SESSION['user'] = $row;
-        header("Location: template.php?id=7");//Dashboard personale
+        $_SESSION['user'] = $row;?>
+        <div class="alert alert-success" role="alert">
+          Login success! Sarai ridirezionato alla tua dashboard entro 3 secondi
+        </div>
+
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <script type="text/javascript">
+          setTimeout(
+            () =>{
+              location.href="template.php?id=7" //Dashboard personale dopo 3 secondi con javascript
+            }, 3000
+          )
+        </script>
+
+        <?PHP //header("Location: template.php?id=7");//Dashboard personale
       }else{
         $errorAut = "Non sei autenticato <a href='template.php?id=6'>Registrati</a>";
         ?>
