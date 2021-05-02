@@ -35,9 +35,9 @@ if ($_POST) {
         //Autenticazione
         //connessione col DB- includere un file conn.inc.php
         include "conn.inc.php"; // restituisce variabile database connessione
-        $nomeutente = $_POST['nome'];
-        $cognomeutente = $_POST['cognome'];
-        $emailutente = $_POST['email'];
+        $nomeutente = mysqli_real_escape_string($dbh, $_POST['nome']);
+        $cognomeutente = mysqli_real_escape_string($dbh, $_POST['cognome']);
+        $emailutente = mysqli_real_escape_string($dbh,$_POST['email']);
         $password = sha1($_POST['password']);
         $dataregistrazione = date("Y-m-d H:i:s");
 
