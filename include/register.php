@@ -34,7 +34,9 @@ if ($_POST) {
     ) {
         //Autenticazione
         //connessione col DB- includere un file conn.inc.php
+
         include "conn.inc.php"; // restituisce variabile database connessione
+        
         $nomeutente = mysqli_real_escape_string($dbh, $_POST['nome']);
         $cognomeutente = mysqli_real_escape_string($dbh, $_POST['cognome']);
         $emailutente = mysqli_real_escape_string($dbh,$_POST['email']);
@@ -42,8 +44,8 @@ if ($_POST) {
         $dataregistrazione = date("Y-m-d H:i:s");
 
         //esecuzione query
-        $query = "INSERT INTO utenti (NomeUtente, CognomeUtente, EmailUtente, PSWd, DataRegistrazione)
-                    VALUES ('$nomeutente','$cognomeutente', '$emailutente', '$password', $dataregistrazione)";
+        $query = "INSERT INTO utenti (NomeUtente, CognomeUtente, EmailUtente, PSWd, DataRegistrazione, disabilitato)
+                    VALUES ('$nomeutente','$cognomeutente', '$emailutente', '$password', '$dataregistrazione', 0)";
 
         if (mysqli_query($dbh, $query)) {
 
