@@ -47,7 +47,7 @@
           }
             else if($_GET['id']==6){ //Area riservata- Registrati
 
-              include "register.php";
+              include "register-con-upload.php";
             }
 
             else if($_GET['id']==7){ //Area riservata - Dashboard
